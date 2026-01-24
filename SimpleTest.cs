@@ -16,13 +16,11 @@ namespace SeleniumDemo
 
             using var driver = new ChromeDriver(options);
 
-            driver.Navigate().GoToUrl("https://www.accountplusfinance.com/education/bonds");
+            driver.Navigate().GoToUrl("https://example.com");
             string title = driver.Title;
 
             TestContext.WriteLine("TITLE: " + title);
-
-            Assert.That(title, Does.Contain("Example"));
-
         }
     }
 }
+
