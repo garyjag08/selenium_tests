@@ -21,7 +21,8 @@ namespace SeleniumDemo
 
             TestContext.WriteLine("TITLE: " + title);
 
-            Assert.IsNotEmpty(title);
+            Assert.That(title, Does.Contain("Example"));
+
         }
     }
 }
