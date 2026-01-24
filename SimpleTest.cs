@@ -16,7 +16,7 @@ namespace SeleniumDemo
 
             using var driver = new ChromeDriver(options);
 
-            driver.Navigate().GoToUrl("https://example.com");
+            driver.Navigate().GoToUrl("https://www.accountplusfinance.com/education/bonds");
             string title = driver.Title;
 
             TestContext.WriteLine("TITLE: " + title);
