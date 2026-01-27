@@ -2,7 +2,6 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 using System;
 
 namespace SeleniumDemo
@@ -21,15 +20,17 @@ namespace SeleniumDemo
 
             driver.Navigate().GoToUrl("https://www.accountplusfinance.com/education/bonds");
 
-            // Wait up to 10 seconds for <body> to be present and visible
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var body = wait.Until(ExpectedConditions.ElementIsVisible(By.TagName("body")));
 
-            bool isVisible = body.Displayed;
+            // Wait for <body> to exist and be displayed
+            IWebElement body = wait.Until(d =>
+            {
+                var element = d.FindElement(By.TagName("body"));
+                return element.Displayed ? element : null;
+            });
 
-            TestContext.WriteLine("BODY VISIBLE: " + isVisible);
-            Assert.IsTrue(isVisible, "The <body> element did not load or is not visible.");
+            TestContext.WriteLine("BODY VISIBLE: " + body.Displayed);
+            Assert.IsTrue(body.Displayed, "<body> element is not visible.");
         }
     }
 }
-
