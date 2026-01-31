@@ -1,31 +1,39 @@
+using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace SeleniumDemo
 {
-    public class SmokeTest
+    public class SimpleTest
     {
-        public bool IsBodyVisible(IWebDriver driver, string url)
+        private IWebDriver _driver;
+        private DriverFactory _factory;
+        private SmokeTest _smoke;
+
+        [SetUp]
+        public void SetUp()
         {
-            driver.Navigate().GoToUrl(url);
+            _factory = new DriverFactory();
+            _smoke = new SmokeTest();
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            _driver = _factory.CreateChromeDriver();
+        }
 
-            try
-            {
-                var body = wait.Until(d =>
-                {
-                    var element = d.FindElement(By.TagName("body"));
-                    return element.Displayed ? element : null;
-                });
+        [TearDown]
+        public void TearDown()
+        {
+            _driver.Quit();
+        }
 
-                return body.Displayed;
-            }
-            catch
-            {
-                return false;
-            }
+        [Test]
+        public void BodyElementIsVisible()
+        {
+            bool result = _smoke.IsBodyVisible(
+                _driver,
+                "https://www.accountplusfinance.com/education/futures"
+            );
+
+            Assert.That(result, Is.True, "Smoke test failed: <body> was not visible.");
         }
     }
 }
+
