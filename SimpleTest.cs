@@ -18,7 +18,7 @@ namespace SeleniumDemo
 
             using var driver = new ChromeDriver(options);
 
-            driver.Navigate().GoToUrl("https://www.accountplusfinance.com/education/bonds");
+            driver.Navigate().GoToUrl("https://www.accountplusfinance.com/education/futures");
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
