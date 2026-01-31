@@ -23,14 +23,14 @@ namespace SeleniumDemo
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             // Wait for <body> to exist and be displayed
-            IWebElement body = wait.Until(d =>
+            var body = wait.Until(d =>
             {
                 var element = d.FindElement(By.TagName("body"));
                 return element.Displayed ? element : null;
             });
 
             TestContext.WriteLine("BODY VISIBLE: " + body.Displayed);
-            Assert.IsTrue(body.Displayed, "<body> element is not visible.");
+            Assert.That(body.Displayed, Is.True, "<body> element is not visible");
         }
     }
 }
