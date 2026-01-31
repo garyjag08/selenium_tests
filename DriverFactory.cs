@@ -3,7 +3,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace SeleniumDemo{
   public class DriverFactory {
-    public IWebDriver InitializeDriver(){
+    public IWebDriver CreateChromeDriver(){
         var options = new ChromeOptions();
         options.AddArgument("--headless=new");
         options.AddArgument("--no-sandbox");
