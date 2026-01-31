@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace SeleniumDemo{
-  public class BuildDriver {
+  public class DriverFactory {
     public IWebDriver InitializeDriver(){
         var options = new ChromeOptions();
         options.AddArgument("--headless=new");
