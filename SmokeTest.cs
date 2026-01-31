@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace SeleniumDemo
 {
-    public class SimpleTest
+    public class SmokeTest
     {
         private IWebDriver _driver;
         private DriverFactory _factory;
